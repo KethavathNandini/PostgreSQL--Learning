@@ -1,1 +1,18 @@
--- NOT NULL , UNIQUE , DEFAULT , CHEC
+-- NOT NULL , UNIQUE , DEFAULT , CHECK
+
+DROP TABLE IF EXISTS basics.accounts;
+CREATE TABLE basics.accounts(
+    id serial PRIMARY KEY,
+    full_name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    is_active BOOLEAN DEFAULT true,
+    age INTEGER CHECK (age>18),
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+INSERT INTO basics.accounts(full_name, email, age)
+VALUES
+('Kethavath Nandini', 'kethavt33@gmail.com',19),
+('Kethavath Renuka', 'kethavtrenu8@gmail.com',42);
+
+SELECT full_name , age FROM basics.accounts
